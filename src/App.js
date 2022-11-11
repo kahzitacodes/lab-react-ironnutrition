@@ -1,5 +1,5 @@
 import './App.css';
-import { Layout, Divider, Row, Button } from 'antd';
+import { Layout, Divider, Row, Button, Empty, Col } from 'antd';
 import { useState } from 'react';
 import foodsDataJSON from './data/foods.json';
 import { FoodBox } from './components/FoodBox';
@@ -13,6 +13,7 @@ function App() {
   const [foodsData, setFoodsData] = useState(foodsDataJSON);
   const [visibility, setVisibility] = useState('hide');
   const [buttonLabel, setButtonLabel] = useState('Add new food');
+  const [emptyState, setEmptyState] = useState(false);
 
   const addNewFood = (newFood) => {
     const updatedList = [newFood, ...foods];
@@ -39,6 +40,7 @@ function App() {
 
     setFood(filterFoods);
     setFoodsData(filterFoods);
+    checkEmpty();
   };
 
   const searchFoodList = (str) => {
@@ -51,8 +53,17 @@ function App() {
       filteredFoods = foodsData.filter((element) => {
         return element.name.toLowerCase().includes(str);
       });
+    }
+    checkEmpty();
+    setFood(filteredFoods);
+  };
 
-      setFood(filteredFoods);
+  let checkEmpty = () => {
+    console.log(foods.length);
+    if (foods.length <= 1) {
+      setEmptyState(true);
+    } else {
+      setEmptyState(false);
     }
   };
 
@@ -62,7 +73,10 @@ function App() {
         <Header className="header">
           <h1>Lab React ironnutrition</h1>
         </Header>
-        <Content style={{ padding: '24px 50px 24px' }}>
+        <Content
+          className="site-layout-background"
+          style={{ padding: '24px 50px 24px' }}
+        >
           <Row
             className={visibility}
             justify="center"
@@ -75,14 +89,22 @@ function App() {
               {buttonLabel}
             </Button>
           </Row>
-
           <Row span={4} justify="center">
             <SearchFood searchFoods={searchFoodList} />
           </Row>
-
           <Divider>Food List</Divider>
 
           <Row gutter={[24, 24]}>
+            {emptyState ? (
+              <Col className={``} span={24}>
+                <Empty
+                  className="site-empty"
+                  description={
+                    <span>Ops! There is no more content to show</span>
+                  }
+                />
+              </Col>
+            ) : null}
             {foods.map((food) => {
               return (
                 <FoodBox

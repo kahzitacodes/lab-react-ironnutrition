@@ -9,3 +9,11 @@
 .show {
   display: flex;
 }
+
+.site-layout-background {
+  background-color: white;
+}
+
+.site-empty {
+  padding: 30px 0;
+}

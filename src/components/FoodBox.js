@@ -1,17 +1,17 @@
 import { Card, Col, Button } from 'antd';
 
 export function FoodBox(props) {
-  const { food, deleteAction } = props;
+  const { name, image, calories, servings } = props.food;
   return (
-    <Col xs={12} sm={8} md={6} lg={6} xl={4}>
-      <Card title={food.name} style={{ height: 300, textAlign: 'left' }}>
-        <img src={food.image} alt={food.name} height={60} />
-        <p>Calories: {food.calories}</p>
-        <p>Servings: {food.servings}</p>
+    <Col xs={12} sm={8} md={6} lg={6} xl={6} xxl={4}>
+      <Card title={name} style={{ textAlign: 'left' }}>
+        <img alt={name} src={image} height={60} />
+        <p>Calories: {calories}</p>
+        <p>Servings: {servings}</p>
         <p>
-          <b>Total Calories: {food.calories * food.servings}</b> kcal
+          <b>Total Calories: {calories * servings}</b> kcal
         </p>
-        <Button type="primary" onClick={() => deleteAction(food.name)}>
+        <Button type="primary" onClick={() => props.deleteAction(name)}>
           Delete
         </Button>
       </Card>

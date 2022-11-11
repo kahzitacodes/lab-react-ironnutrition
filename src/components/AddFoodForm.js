@@ -38,16 +38,18 @@ export function AddFoodForm(props) {
               textAlign: 'left',
             }}
           >
-            <label htmlFor="name">Name</label>
+            <label htmlFor="input-name">Name</label>
             <Input
+              id="input-name"
               name="name"
               value={form.name}
               type="text"
               onChange={handleChanges}
             />
 
-            <label htmlFor="image">Image</label>
+            <label htmlFor="input-image">Image</label>
             <Input
+              id="input-image"
               placeholder="https://imgur.com/0WkdgkE.jpg"
               name="image"
               value={form.image}
@@ -55,16 +57,18 @@ export function AddFoodForm(props) {
               onChange={handleChanges}
             />
 
-            <label htmlFor="calories">Calories</label>
+            <label htmlFor="input-calories">Calories</label>
             <Input
+              id="input-calories"
               name="calories"
               value={form.calories}
               type="number"
               onChange={handleChanges}
             />
 
-            <label htmlFor="servings">Servings</label>
+            <label htmlFor="input-servings">Servings</label>
             <Input
+              id="input-servings"
               name="servings"
               value={form.servings}
               type="number"
