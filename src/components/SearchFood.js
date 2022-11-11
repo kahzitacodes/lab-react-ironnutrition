@@ -1,4 +1,4 @@
-import { Col, Divider, Input } from 'antd';
+import { Col, Divider, Input, Row } from 'antd';
 import { useState } from 'react';
 
 export function SearchFood(props) {
@@ -13,13 +13,17 @@ export function SearchFood(props) {
   return (
     <Col span={24}>
       <Divider>Search food</Divider>
-      <label>Search</label>
-      <Input
-        placeholder="type food"
-        name="search"
-        value={search}
-        onChange={handleSearch}
-      />
+      <Row justify="center">
+        <Col span={12}>
+          <label>Search</label>
+          <Input
+            placeholder="type food"
+            name="search"
+            value={search}
+            onChange={handleSearch}
+          />
+        </Col>
+      </Row>
     </Col>
   );
 }
